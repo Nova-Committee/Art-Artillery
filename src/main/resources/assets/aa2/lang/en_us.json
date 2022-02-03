@@ -1,0 +1,9 @@
+{
+  "item.aa2.pl_0": "Portable Launcher",
+  "item.aa2.pl_1": "Portable Launcher(Tri)",
+  "item.aa2.pl_2": "Portable Launcher(Hex)",
+  "item.aa2.generic_shell": "Generic Shell",
+  "itemGroup.aa2": "Art? Artillery!2",
+  "msg.aa2.full_mag": "The launcher doesn't need any extra shells!",
+  "msg.aa2.insufficient_shell": "Insufficient shell!"
+}

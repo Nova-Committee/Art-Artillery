@@ -1,0 +1,9 @@
+{
+  "item.aa2.pl_0": "单兵炮",
+  "item.aa2.pl_1": "单兵炮（三发）",
+  "item.aa2.pl_2": "单兵炮（六发）",
+  "item.aa2.generic_shell": "通用炮弹",
+  "itemGroup.aa2": "艺术？火炮！II",
+  "msg.aa2.full_mag": "弹仓已满。",
+  "msg.aa2.insufficient_shell": "炮弹不足！"
+}

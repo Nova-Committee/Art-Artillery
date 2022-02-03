@@ -1,0 +1,12 @@
+modLoader = "javafml"
+loaderVersion = "[38,)"
+license = "AGPL v3"
+[[mods]]
+modId = "aa2"
+version = "${file.jarVersion}"
+displayName = "Art?Artillery!2"
+#logoFile="logo.png"
+credits = ""
+authors = "Tapio"
+description = '''
+'''

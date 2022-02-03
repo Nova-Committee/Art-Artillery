@@ -1,0 +1,7 @@
+{
+  "parent": "aa2:item/portable_launcher",
+  "textures": {
+    "0": "aa2:items/tier_2",
+    "1": "aa2:items/pl"
+  }
+}
