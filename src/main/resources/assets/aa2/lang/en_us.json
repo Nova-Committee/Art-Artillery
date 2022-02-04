@@ -3,7 +3,17 @@
   "item.aa2.pl_1": "Portable Launcher(Tri)",
   "item.aa2.pl_2": "Portable Launcher(Hex)",
   "item.aa2.generic_shell": "Generic Shell",
+  "item.aa2.barrel": "Barrel",
+  "item.aa2.butt": "Butt",
+  "item.aa2.handle": "Handle",
+  "item.aa2.machine": "Machine",
+  "item.aa2.mag_3": "Magazine(Tri)",
+  "item.aa2.mag_6": "Magazine(Hex)",
+  "item.aa2.mag_u": "Magazine Upgrade",
   "itemGroup.aa2": "Art? Artillery!2",
+  "key.aa2.reload": "Reload",
+  "key.categories.aa2": "Art? Artillery!2",
   "msg.aa2.full_mag": "The launcher doesn't need any extra shells!",
-  "msg.aa2.insufficient_shell": "Insufficient shell!"
+  "msg.aa2.insufficient_shell": "Insufficient shell!",
+  "death.attack.shotByShell": "%1$s was crushed by %2$s using portable launcher"
 }

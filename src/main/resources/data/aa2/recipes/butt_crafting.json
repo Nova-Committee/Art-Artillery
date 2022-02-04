@@ -1,0 +1,30 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23",
+    " 5"
+  ],
+  "key": {
+    "0": {
+      "tag": "minecraft:wool"
+    },
+    "1": {
+      "item": "minecraft:smooth_stone"
+    },
+    "2": {
+      "tag": "minecraft:wool"
+    },
+    "3": {
+      "item": "minecraft:smooth_stone"
+    },
+    "5": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "aa2:butt",
+    "count": 1
+  }
+}

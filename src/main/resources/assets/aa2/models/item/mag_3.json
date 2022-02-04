@@ -1,6 +1,172 @@
 {
-  "parent": "item/generated",
+  "credit": "Tapio made with Blockbench",
   "textures": {
-    "layer0": "aa2:items/mag_3"
-  }
+    "0": "aa2:items/mag_3"
+  },
+  "elements": [
+    {
+      "name": "magazine",
+      "from": [
+        7.5,
+        0,
+        5
+      ],
+      "to": [
+        8.5,
+        1,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            3,
+            3
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            6,
+            1
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            2,
+            3,
+            3,
+            4
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            1,
+            6,
+            2
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            1,
+            8,
+            0,
+            2
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            1,
+            8
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "translation": [
+        0,
+        8,
+        0.75
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "translation": [
+        0,
+        8,
+        0.75
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "translation": [
+        0,
+        8.25,
+        0.75
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "translation": [
+        0,
+        8.25,
+        0.75
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        4.5,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        18,
+        36,
+        0
+      ],
+      "translation": [
+        0,
+        6.5,
+        0
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -90,
+        -90,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        -8
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "magazine",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        0
+      ]
+    }
+  ]
 }

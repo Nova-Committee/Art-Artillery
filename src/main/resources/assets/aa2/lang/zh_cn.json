@@ -3,7 +3,17 @@
   "item.aa2.pl_1": "单兵炮（三发）",
   "item.aa2.pl_2": "单兵炮（六发）",
   "item.aa2.generic_shell": "通用炮弹",
+  "item.aa2.barrel": "炮管",
+  "item.aa2.butt": "后托",
+  "item.aa2.handle": "握把",
+  "item.aa2.machine": "炮机",
+  "item.aa2.mag_3": "弹仓（三发）",
+  "item.aa2.mag_6": "弹仓（六发）",
+  "item.aa2.mag_u": "弹仓升级",
   "itemGroup.aa2": "艺术？火炮！II",
+  "key.aa2.reload": "装填",
+  "key.categories.aa2": "艺术？火炮！II",
   "msg.aa2.full_mag": "弹仓已满。",
-  "msg.aa2.insufficient_shell": "炮弹不足！"
+  "msg.aa2.insufficient_shell": "炮弹不足！",
+  "death.attack.shotByShell": "%1$s被%2$s发射的炮弹撕成碎片了"
 }

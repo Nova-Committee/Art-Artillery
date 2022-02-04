@@ -90,7 +90,7 @@ public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     @Override
     public void tick() {
         super.tick();
-        if (this.inGround || this.isUnderWater()) {
+        if (this.inGround || this.isUnderWater() || tickCount > 200) {
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), 2F, Explosion.BlockInteraction.NONE);
             this.discard();
         }

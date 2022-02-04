@@ -1,0 +1,24 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gng",
+    "nsn",
+    "gng"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:gunpowder"
+    },
+    "n": {
+      "item": "minecraft:iron_nugget"
+    },
+    "s": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "aa2:generic_shell",
+    "count": 2
+  }
+}

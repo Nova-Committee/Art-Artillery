@@ -1,0 +1,42 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "tag": "minecraft:wool"
+    },
+    "1": {
+      "item": "minecraft:stone"
+    },
+    "2": {
+      "tag": "minecraft:wool"
+    },
+    "3": {
+      "tag": "minecraft:wool"
+    },
+    "4": {
+      "item": "minecraft:stone"
+    },
+    "5": {
+      "tag": "minecraft:wool"
+    },
+    "6": {
+      "tag": "minecraft:wool"
+    },
+    "7": {
+      "item": "minecraft:stone"
+    },
+    "8": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "aa2:handle",
+    "count": 3
+  }
+}

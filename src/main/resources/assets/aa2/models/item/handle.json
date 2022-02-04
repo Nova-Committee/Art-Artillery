@@ -1,6 +1,147 @@
 {
-  "parent": "item/generated",
+  "credit": "Tapio made with Blockbench",
   "textures": {
-    "layer0": "aa2:items/handle"
-  }
+    "0": "aa2:items/handle"
+  },
+  "elements": [
+    {
+      "name": "main",
+      "from": [
+        6.5,
+        0,
+        7.5
+      ],
+      "to": [
+        9.5,
+        3,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            3,
+            0,
+            4,
+            3
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            3,
+            3,
+            6
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            3,
+            3,
+            4,
+            6
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            7,
+            1,
+            4,
+            0
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            7,
+            1,
+            4,
+            2
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        8,
+        0.5
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        8,
+        0.5
+      ]
+    },
+    "firstperson_righthand": {
+      "translation": [
+        0,
+        7.5,
+        0
+      ]
+    },
+    "firstperson_lefthand": {
+      "translation": [
+        0,
+        7.5,
+        0
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        4,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        -18,
+        -36,
+        0
+      ],
+      "translation": [
+        0,
+        5.25,
+        0
+      ]
+    },
+    "fixed": {
+      "translation": [
+        -0.75,
+        6.75,
+        0
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "handle",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        0
+      ]
+    }
+  ]
 }
