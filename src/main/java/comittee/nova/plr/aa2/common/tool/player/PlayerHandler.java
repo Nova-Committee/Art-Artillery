@@ -24,7 +24,6 @@ public class PlayerHandler {
                 if (stackToTest.isEmpty()) player.getInventory().removeItem(stackToTest);
                 return true;
             }
-            ;
         }
         return false;
     }
@@ -52,13 +51,12 @@ public class PlayerHandler {
     }
 
     public static boolean canShootAccurately(Player player) {
-        final double y = player.getDeltaMovement().y;
-        if (y > 0.2D) {
+        if (!player.isOnGround() && !player.isPassenger()) {
             return false;
         }
-        final double x = player.getDeltaMovement().x;
-        final double z = player.getDeltaMovement().z;
-        final double h = Math.sqrt(x * x + z * z);
-        return !(h > 1.4D);
+        if (player.isSprinting()) {
+            return false;
+        }
+        return !player.isSwimming();
     }
 }

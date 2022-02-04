@@ -41,7 +41,7 @@ public class PortableLauncherItem extends Item {
     }
 
     public static void initializeNbt(CompoundTag tag, int magazine) {
-        if (!tag.contains(CURRENT)) tag.putInt(CURRENT, (int) 0);
+        if (!tag.contains(CURRENT)) tag.putInt(CURRENT, 0);
         if (!tag.contains(MAX)) tag.putInt(MAX, magazine);
     }
 
@@ -60,7 +60,6 @@ public class PortableLauncherItem extends Item {
             if (player.getCooldowns().isOnCooldown(stack.getItem())) {
                 return true;
             }
-            ;
             if (consumeShell(stack, player)) launchShell(stack, player);
         }
         return true;

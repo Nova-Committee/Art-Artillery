@@ -22,7 +22,7 @@ import static comittee.nova.plr.aa2.common.tool.player.PlayerHandler.notifyClien
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ReloadKeyMessage {
-    int type;
+    final int type;
 
     public ReloadKeyMessage(int type) {
         this.type = type;
@@ -42,9 +42,7 @@ public class ReloadKeyMessage {
         if (player == null) {
             return;
         }
-        context.enqueueWork(() -> {
-            pressAction(player);
-        });
+        context.enqueueWork(() -> pressAction(player));
         context.setPacketHandled(true);
     }
 
@@ -56,12 +54,8 @@ public class ReloadKeyMessage {
 
             final int status = launcher.reloadable(stack, player);
             switch (status) {
-                case 2 -> {
-                    notifyClientPlayer(player, new TranslatableComponent("msg.aa2.cooling"));
-                }
-                case 1 -> {
-                    notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
-                }
+                case 2 -> notifyClientPlayer(player, new TranslatableComponent("msg.aa2.cooling"));
+                case 1 -> notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
                 case 0 -> {
                     if (!PlayerHandler.loadShell(stack, player)) {
                         notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_shell"));
@@ -70,9 +64,7 @@ public class ReloadKeyMessage {
                     player.getCooldowns().addCooldown(stack.getItem(), 20);
                     launcher.load(stack.getOrCreateTag(), player, stack.getItem());
                 }
-                default -> {
-                    AA2.LOGGER.error(MessageFormat.format("Unexpected status {0}, should be 0~2!", status));
-                }
+                default -> AA2.LOGGER.error(MessageFormat.format("Unexpected status {0}, should be 0~2!", status));
             }
         }
     }

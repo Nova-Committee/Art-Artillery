@@ -10,6 +10,12 @@ public class CommonConfig {
                     "Should we activate inaccuracy system?",
                     " If yes, player should stand still to keep the mod's ranged item accurate.")
             .define("inaccuracy", true);
+    public static final ForgeConfigSpec.DoubleValue INACCURACY_AMPLIFIER = BUILDER.comment(
+                    "What should the inaccuracy multiplier be?",
+                    "The larger the multiplier, the higher the inaccuracy.",
+                    "Default is 1.0."
+            )
+            .defineInRange("inaccuracy_amplifier", 1D, 0D, 50D);
     public static final ForgeConfigSpec.IntValue FIRE_CD = BUILDER.comment(
                     "[Cool Down Times]",
                     "How long should be the cool down time after using the launcher?",

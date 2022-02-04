@@ -16,5 +16,6 @@
   "msg.aa2.cooling": "Already reloading, or the launcher's barrel needs cooling",
   "msg.aa2.full_mag": "The launcher doesn't need any extra shells!",
   "msg.aa2.insufficient_shell": "Insufficient shell!",
-  "death.attack.shotByShell": "%1$s was crushed by %2$s using portable launcher"
+  "death.attack.shotByShell": "%1$s was crushed by a shell",
+  "death.attack.shotByShell.player": "%1$s was crushed by %2$s using portable launcher"
 }

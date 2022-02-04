@@ -47,9 +47,10 @@ public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     public static ShellProjectile shoot(Level world, LivingEntity entity, boolean isAccurate) {
         final ShellProjectile shell = new ShellProjectile(EntityInit.shell.get(), entity, world);
         final Random random = world.random;
-        final float xO = isAccurate ? 0 : random.nextFloat() - 0.5F;
-        final float yO = isAccurate ? 0 : random.nextFloat() - 0.5F;
-        final float zO = isAccurate ? 0 : random.nextFloat() - 0.5F;
+        final float inaccuracy = CommonConfig.INACCURACY_AMPLIFIER.get().floatValue();
+        final float xO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy;
+        final float yO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy;
+        final float zO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy;
         shell.shoot(entity.getLookAngle().x + xO, entity.getLookAngle().y + yO, entity.getLookAngle().z + zO, power * 2, 0);
         shell.setSilent(true);
         shell.setCritArrow(false);
