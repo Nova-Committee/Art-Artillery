@@ -1,7 +1,9 @@
 package comittee.nova.plr.aa2.common.item.base;
 
 import comittee.nova.plr.aa2.client.creativeTab.TabInit;
+import comittee.nova.plr.aa2.common.config.CommonConfig;
 import comittee.nova.plr.aa2.common.entity.impl.ShellProjectile;
+import comittee.nova.plr.aa2.common.tool.player.PlayerHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
@@ -19,7 +21,7 @@ import javax.annotation.Nonnull;
 import static comittee.nova.plr.aa2.common.tool.player.PlayerHandler.*;
 
 public class PortableLauncherItem extends Item {
-    private final int reloadTime = 60;
+    private final int reloadTime = CommonConfig.RELOAD_CD.get();
     private final int magazine;
 
     public PortableLauncherItem(int magazine) {
@@ -30,10 +32,11 @@ public class PortableLauncherItem extends Item {
     public static void launchShell(ItemStack stack, Player player) {
         final Level level = player.level;
         if (!level.isClientSide) {
-            final ShellProjectile shell = ShellProjectile.shoot(level, player, true);
+            final boolean accurate = (!CommonConfig.INACCURACY_SYSTEM.get()) || PlayerHandler.canShootAccurately(player);
+            final ShellProjectile shell = ShellProjectile.shoot(level, player, accurate);
             stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
             shell.pickup = AbstractArrow.Pickup.DISALLOWED;
-            player.getCooldowns().addCooldown(stack.getItem(), 20);
+            player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD.get());
         }
     }
 
@@ -75,6 +78,9 @@ public class PortableLauncherItem extends Item {
 
     public int reloadable(ItemStack stack, Player player) {
         final int c = stack.getOrCreateTag().getInt(CURRENT);
+        if (player.getCooldowns().isOnCooldown(stack.getItem())) {
+            return 2;
+        }
         return (c < magazine) ? 0 : 1;
     }
 
@@ -88,10 +94,11 @@ public class PortableLauncherItem extends Item {
         initializeNbt(stack.getOrCreateTag(), magazine);
     }
 
-    public void load(CompoundTag tag, Player player) {
+    public void load(CompoundTag tag, Player player, Item launcher) {
         tag.putInt(CURRENT, tag.getInt(CURRENT) + 1);
         if (player.level.isClientSide) {
             player.playSound(SoundEvents.WOODEN_BUTTON_CLICK_OFF, 1f, 1f);
         }
+        player.getCooldowns().addCooldown(launcher, CommonConfig.RELOAD_CD.get());
     }
 }

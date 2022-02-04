@@ -1,4 +1,4 @@
-package comittee.nova.plr.aa2.common.hotkey.init;
+package comittee.nova.plr.aa2.client.hotkey.init;
 
 import comittee.nova.plr.aa2.common.message.hotkey.ReloadKeyMessage;
 import comittee.nova.plr.aa2.common.message.init.MessageInit;

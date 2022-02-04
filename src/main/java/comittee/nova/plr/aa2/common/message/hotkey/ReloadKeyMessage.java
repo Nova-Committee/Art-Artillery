@@ -56,6 +56,9 @@ public class ReloadKeyMessage {
 
             final int status = launcher.reloadable(stack, player);
             switch (status) {
+                case 2 -> {
+                    notifyClientPlayer(player, new TranslatableComponent("msg.aa2.cooling"));
+                }
                 case 1 -> {
                     notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
                 }
@@ -64,10 +67,11 @@ public class ReloadKeyMessage {
                         notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_shell"));
                         return;
                     }
-                    launcher.load(stack.getOrCreateTag(), player);
+                    player.getCooldowns().addCooldown(stack.getItem(), 20);
+                    launcher.load(stack.getOrCreateTag(), player, stack.getItem());
                 }
                 default -> {
-                    AA2.LOGGER.error(MessageFormat.format("Unexpected status {0}, should be 0~1!", status));
+                    AA2.LOGGER.error(MessageFormat.format("Unexpected status {0}, should be 0~2!", status));
                 }
             }
         }

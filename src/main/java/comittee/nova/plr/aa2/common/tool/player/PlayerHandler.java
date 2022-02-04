@@ -50,4 +50,15 @@ public class PlayerHandler {
             player.sendMessage(text, Util.NIL_UUID);
         }
     }
+
+    public static boolean canShootAccurately(Player player) {
+        final double y = player.getDeltaMovement().y;
+        if (y > 0.2D) {
+            return false;
+        }
+        final double x = player.getDeltaMovement().x;
+        final double z = player.getDeltaMovement().z;
+        final double h = Math.sqrt(x * x + z * z);
+        return !(h > 1.4D);
+    }
 }

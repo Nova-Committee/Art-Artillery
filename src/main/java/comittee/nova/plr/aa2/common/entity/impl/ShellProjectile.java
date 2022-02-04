@@ -1,5 +1,6 @@
 package comittee.nova.plr.aa2.common.entity.impl;
 
+import comittee.nova.plr.aa2.common.config.CommonConfig;
 import comittee.nova.plr.aa2.common.entity.init.EntityInit;
 import comittee.nova.plr.aa2.common.item.init.ItemInit;
 import net.minecraft.network.protocol.Packet;
@@ -23,7 +24,7 @@ import java.util.Random;
 
 public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     //todo:config
-    public static final float power = 1.0F;
+    public static final float power = CommonConfig.SHELL_SPEED.get().floatValue();
     public static final DamageSource SHOT_BY_SHELL = new DamageSource("shotByShell").setProjectile().bypassMagic();
 
     public ShellProjectile(PlayMessages.SpawnEntity packet, Level world) {
@@ -81,8 +82,8 @@ public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     @Override
     protected void doPostHurtEffects(@Nonnull LivingEntity entity) {
         super.doPostHurtEffects(entity);
-        entity.hurt(SHOT_BY_SHELL, 5F);
-        this.level.explode(this, getX(), getY(), getZ(), 2F, Explosion.BlockInteraction.NONE);
+        entity.hurt(SHOT_BY_SHELL, CommonConfig.SHELL_DIRECT_DAMAGE.get().floatValue());
+        this.level.explode(this, getX(), getY(), getZ(), CommonConfig.SHELL_HIT_ENTITY_EXPLOSION_POWER.get().floatValue(), getExplosionTypeFromInt(CommonConfig.SHELL_HIT_ENTITY_EXPLOSION_TYPE.get()));
         this.discard();
         //todo:make damage configurable
     }
@@ -90,9 +91,31 @@ public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     @Override
     public void tick() {
         super.tick();
-        if (this.inGround || this.isUnderWater() || tickCount > 200) {
-            this.level.explode(this, this.getX(), this.getY(), this.getZ(), 2F, Explosion.BlockInteraction.NONE);
+        final boolean timeOut = tickCount > 200;
+        if (this.inGround || this.isUnderWater() || timeOut) {
+            final float designedPower = CommonConfig.SHELL_HIT_BLOCK_EXPLOSION_POWER.get().floatValue();
+            this.level.explode(this, this.getX(), this.getY(), this.getZ(),
+                    timeOut ? Math.min(1.0F, designedPower) : designedPower,
+                    timeOut ? Explosion.BlockInteraction.NONE : getExplosionTypeFromInt(CommonConfig.SHELL_HIT_BLOCK_EXPLOSION_TYPE.get()));
             this.discard();
+        }
+    }
+
+    private Explosion.BlockInteraction getExplosionTypeFromInt(int type) {
+        switch (type) {
+            case 0 -> {
+                return Explosion.BlockInteraction.NONE;
+            }
+            case 1 -> {
+                return Explosion.BlockInteraction.BREAK;
+            }
+            case 2 -> {
+                return Explosion.BlockInteraction.DESTROY;
+            }
+            default -> {
+                LOGGER.warn("Unexpected explosion type! Defaulted it to 0 -> NONE.");
+                return Explosion.BlockInteraction.NONE;
+            }
         }
     }
 
