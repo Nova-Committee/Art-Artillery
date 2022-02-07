@@ -86,7 +86,6 @@ public class ShellProjectile extends AbstractArrow implements ItemSupplier {
         entity.hurt(SHOT_BY_SHELL, CommonConfig.SHELL_DIRECT_DAMAGE.get().floatValue());
         this.level.explode(this, getX(), getY(), getZ(), CommonConfig.SHELL_HIT_ENTITY_EXPLOSION_POWER.get().floatValue(), getExplosionTypeFromInt(CommonConfig.SHELL_HIT_ENTITY_EXPLOSION_TYPE.get()));
         this.discard();
-        //todo:make damage configurable
     }
 
     @Override

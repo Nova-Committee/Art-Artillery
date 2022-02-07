@@ -53,7 +53,7 @@ public class MagazineOverlay {
     }
 
     public static void blitShellIndicator(PoseStack matrixStack, int amount, int height) {
-        final ResourceLocation texture = new ResourceLocation(MessageFormat.format("aa2:textures/gui/{0}shell.png", (amount == 0) ? "no_" : ""));
+        final ResourceLocation texture = new ResourceLocation(MessageFormat.format("aa2:textures/overlay/{0}shell.png", (amount == 0) ? "no_" : ""));
         RenderSystem.setShaderTexture(0, texture);
         GuiComponent.blit(matrixStack, 3, height - 18, 0, 0, 16, 16, 16, 16);
         Minecraft.getInstance().font.draw(matrixStack, new TextComponent((amount == 0) ? "" : String.valueOf(amount))
