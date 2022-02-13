@@ -12,6 +12,7 @@ public class RendererInit {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityInit.shell.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(EntityInit.flakCannon.get(), ThrownItemRenderer::new);
     }
 
 }

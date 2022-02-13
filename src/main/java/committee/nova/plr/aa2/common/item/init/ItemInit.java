@@ -1,6 +1,7 @@
 package committee.nova.plr.aa2.common.item.init;
 
 import committee.nova.plr.aa2.client.creativeTab.TabInit;
+import committee.nova.plr.aa2.common.item.base.PortableFlakLauncherItem;
 import committee.nova.plr.aa2.common.item.base.PortableLauncherItem;
 import committee.nova.plr.aa2.common.util.RegistryHandler;
 import net.minecraft.tags.Tag;
@@ -17,8 +18,10 @@ public class ItemInit {
     public static final RegistryObject<Item> portableLauncher = RegistryHandler.Items.register("pl_0", () -> new PortableLauncherItem(1));
     public static final RegistryObject<Item> portableLauncherIII = RegistryHandler.Items.register("pl_1", () -> new PortableLauncherItem(3));
     public static final RegistryObject<Item> portableLauncherVI = RegistryHandler.Items.register("pl_2", () -> new PortableLauncherItem(6));
+    public static final RegistryObject<Item> portableFlakCannon = RegistryHandler.Items.register("pfc", () -> new PortableFlakLauncherItem(1));
 
     public static final RegistryObject<Item> genericShell = RegistryHandler.Items.register("generic_shell", () -> new Item(new Item.Properties().tab(TabInit.AA2_TAB)));
+    public static final RegistryObject<Item> flakCannon = RegistryHandler.Items.register("flak_cannon", () -> new Item(new Item.Properties().tab(TabInit.AA2_TAB)));
 
     public static void register() {
         for (String id : list) {

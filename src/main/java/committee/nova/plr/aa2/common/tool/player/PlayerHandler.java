@@ -1,6 +1,6 @@
 package committee.nova.plr.aa2.common.tool.player;
 
-import committee.nova.plr.aa2.common.item.init.ItemInit;
+import committee.nova.plr.aa2.common.item.api.IReloadable;
 import net.minecraft.Util;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -15,20 +15,22 @@ public class PlayerHandler {
     public static final String MAX = "m_magazine";
 
     public static boolean loadShell(ItemStack stack, Player player) {
-        final NonNullList<ItemStack> itemList = player.getInventory().items;
-        final int size = itemList.size();
-        final Item shell = ItemInit.genericShell.get();
-        for (final ItemStack stackToTest : itemList) {
-            if (stackToTest.getItem() == shell) {
-                stackToTest.shrink(1);
-                if (stackToTest.isEmpty()) player.getInventory().removeItem(stackToTest);
-                return true;
+        if (stack.getItem() instanceof IReloadable launcher) {
+            final NonNullList<ItemStack> itemList = player.getInventory().items;
+            final int size = itemList.size();
+            final Item ammunition = launcher.getAmmunition();
+            for (final ItemStack stackToTest : itemList) {
+                if (stackToTest.getItem() == ammunition) {
+                    stackToTest.shrink(1);
+                    if (stackToTest.isEmpty()) player.getInventory().removeItem(stackToTest);
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public static boolean consumeShell(ItemStack stack, Player player) {
+    public static boolean consumeMagazine(ItemStack stack, Player player) {
         final CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(CURRENT)) {
             return false;

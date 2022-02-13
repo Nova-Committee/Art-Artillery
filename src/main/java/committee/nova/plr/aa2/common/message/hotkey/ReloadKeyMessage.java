@@ -1,7 +1,7 @@
 package committee.nova.plr.aa2.common.message.hotkey;
 
 import committee.nova.plr.aa2.common.AA2;
-import committee.nova.plr.aa2.common.item.base.PortableLauncherItem;
+import committee.nova.plr.aa2.common.item.api.IReloadable;
 import committee.nova.plr.aa2.common.message.init.MessageInit;
 import committee.nova.plr.aa2.common.tool.player.PlayerHandler;
 import net.minecraft.network.FriendlyByteBuf;
@@ -50,7 +50,7 @@ public class ReloadKeyMessage {
         final Level world = player.level;
         if (!world.hasChunkAt(player.blockPosition())) return;
         final ItemStack stack = player.getMainHandItem();
-        if ((stack.getItem() instanceof PortableLauncherItem launcher)) {
+        if ((stack.getItem() instanceof IReloadable launcher)) {
 
             final int status = launcher.reloadable(stack, player);
             switch (status) {
@@ -58,7 +58,7 @@ public class ReloadKeyMessage {
                 case 1 -> notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
                 case 0 -> {
                     if (!PlayerHandler.loadShell(stack, player)) {
-                        notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_shell"));
+                        notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_ammunition"));
                         return;
                     }
                     player.getCooldowns().addCooldown(stack.getItem(), 20);
