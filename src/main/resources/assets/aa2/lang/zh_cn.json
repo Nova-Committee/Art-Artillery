@@ -2,7 +2,9 @@
   "item.aa2.pl_0": "单兵炮",
   "item.aa2.pl_1": "单兵炮（三发）",
   "item.aa2.pl_2": "单兵炮（六发）",
+  "item.aa2.pfl": "单兵防空炮",
   "item.aa2.generic_shell": "通用炮弹",
+  "item.aa2.flak_cannon": "防空炮弹",
   "item.aa2.barrel": "炮管",
   "item.aa2.butt": "后托",
   "item.aa2.handle": "握把",
@@ -17,5 +19,7 @@
   "msg.aa2.full_mag": "弹仓已满。",
   "msg.aa2.insufficient_ammunition": "弹药不足！",
   "death.attack.shotByShell": "%1$s被炮弹撕成碎片了",
-  "death.attack.shotByShell.player": "%1$s被%2$s发射的炮弹撕成碎片了"
+  "death.attack.shotByShell.player": "%1$s被%2$s发射的炮弹撕成碎片了",
+  "death.attack.shotByFlak": "%1$s与防空炮弹相撞了",
+  "death.attack.shotByFlak.player": "%1$s与%2$s发射的防空炮弹相撞了"
 }

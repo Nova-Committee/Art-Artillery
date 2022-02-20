@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#S#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_nugget"
+    },
+    "S": {
+      "item": "aa2:generic_shell"
+    }
+  },
+  "result": {
+    "item": "aa2:flak_cannon",
+    "count": 8
+  }
+}

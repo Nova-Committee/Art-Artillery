@@ -38,9 +38,8 @@ public class PortableFlakLauncherItem extends Item implements IReloadable {
         final Level level = player.level;
         if (!level.isClientSide) {
             final FlakCannonProjectile cannon = FlakCannonProjectile.shoot(level, player, fuseTime);
-            stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
-            ;
             cannon.pickup = AbstractArrow.Pickup.DISALLOWED;
+            stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
             //todo: own CD
             player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD.get());
         }

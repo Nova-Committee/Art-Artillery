@@ -2,11 +2,11 @@ package committee.nova.plr.aa2.common.entity.impl;
 
 import committee.nova.plr.aa2.common.entity.init.EntityInit;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
+import committee.nova.plr.aa2.common.sound.init.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Random;
 
 public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier {
-    public static final DamageSource SHOT_BY_FLAK = new DamageSource("shotByFlak").setExplosion().bypassMagic();
+    public static final DamageSource SHOT_BY_FLAK = new DamageSource("shotByFlak").setProjectile().bypassMagic();
     private static final int remainTime = 160;
     private final int fuseTime;
 
@@ -61,7 +61,7 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
         flakCannon.setCritArrow(false);
         world.addFreshEntity(flakCannon);
         world.playSound(null, entity.getX(), entity.getY(), entity.getZ(),
-                SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.PLAYERS, 1,
+                SoundInit.FLAK_LAUNCH, SoundSource.PLAYERS, 1,
                 1f);
         return flakCannon;
     }
@@ -75,9 +75,8 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
     @Override
     @OnlyIn(Dist.CLIENT)
     @Nonnull
-    //todo:own item
     public ItemStack getItem() {
-        return new ItemStack(ItemInit.genericShell.get());
+        return new ItemStack(ItemInit.flakCannon.get());
     }
 
     @Nonnull
@@ -89,7 +88,7 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
     @Override
     protected void doPostHurtEffects(@Nonnull LivingEntity entity) {
         super.doPostHurtEffects(entity);
-        entity.hurt(SHOT_BY_FLAK, 16F);
+        entity.hurt(SHOT_BY_FLAK, Math.max(0F, 16F - 16F * (tickCount - fuseTime - 80) / remainTime));
         //todo:particle
         this.discard();
     }
@@ -97,16 +96,19 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
     @Override
     public void tick() {
         super.tick();
-        final boolean timeOut = tickCount > fuseTime + remainTime + 80;
+        final boolean timeOut = tickCount > fuseTime + remainTime + 75;
         if (this.inGround || this.isUnderWater() || timeOut) {
             if (!timeOut)
                 level.explode(this, this.getX(), this.getY(), this.getZ(), 1F, Explosion.BlockInteraction.NONE);
             this.discard();
         } else if (tickCount > fuseTime) {
-            this.setDeltaMovement(0, 0, 0);
             final Vec3i pos = new Vec3i(this.getX(), this.getY(), this.getZ());
+            if (tickCount == fuseTime + 70) {
+                this.level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundInit.FLAK_EXPLODE, SoundSource.PLAYERS, 1F, 1F);
+            }
+            this.setDeltaMovement(0, 0, 0);
             generateParticle(level, pos);
-            if (tickCount > fuseTime + 80) {
+            if (tickCount > fuseTime + 75) {
                 generateDamage(this.level, pos);
             }
         }

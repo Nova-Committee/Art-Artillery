@@ -2,7 +2,9 @@
   "item.aa2.pl_0": "Portable Launcher",
   "item.aa2.pl_1": "Portable Launcher(Tri)",
   "item.aa2.pl_2": "Portable Launcher(Hex)",
+  "item.aa2.pfl": "Portable Flak Launcher",
   "item.aa2.generic_shell": "Generic Shell",
+  "item.aa2.flak_cannon": "Flak Cannon",
   "item.aa2.barrel": "Barrel",
   "item.aa2.butt": "Butt",
   "item.aa2.handle": "Handle",
@@ -17,5 +19,7 @@
   "msg.aa2.full_mag": "The launcher doesn't need any extra shells!",
   "msg.aa2.insufficient_ammunition": "Insufficient shell!",
   "death.attack.shotByShell": "%1$s was crushed by a shell",
-  "death.attack.shotByShell.player": "%1$s was crushed by %2$s using portable launcher"
+  "death.attack.shotByShell.player": "%1$s was crushed by %2$s using portable launcher",
+  "death.attack.shotByFlak": "%1$s met a flak cannon",
+  "death.attack.shotByFlak.player": "%1$s met a flak cannon launched by %2$s"
 }
