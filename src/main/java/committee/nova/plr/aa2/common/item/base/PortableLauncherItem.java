@@ -37,8 +37,7 @@ public class PortableLauncherItem extends Item implements IReloadable, IThirdPer
     public static void launchShell(ItemStack stack, Player player) {
         final Level level = player.level;
         if (!level.isClientSide) {
-            final boolean accurate = (!CommonConfig.INACCURACY_SYSTEM.get()) || PlayerHandler.canShootAccurately(player);
-            final ShellProjectile shell = ShellProjectile.shoot(level, player, accurate);
+            final ShellProjectile shell = ShellProjectile.shoot(level, player, PlayerHandler.canShootAccurately(player));
             stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
             shell.pickup = AbstractArrow.Pickup.DISALLOWED;
             player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD.get());

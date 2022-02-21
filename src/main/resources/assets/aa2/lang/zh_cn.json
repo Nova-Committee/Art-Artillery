@@ -21,5 +21,6 @@
   "death.attack.shotByShell": "%1$s被炮弹撕成碎片了",
   "death.attack.shotByShell.player": "%1$s被%2$s发射的炮弹撕成碎片了",
   "death.attack.shotByFlak": "%1$s与防空炮弹相撞了",
-  "death.attack.shotByFlak.player": "%1$s与%2$s发射的防空炮弹相撞了"
+  "death.attack.shotByFlak.player": "%1$s与%2$s发射的防空炮弹相撞了",
+  "overlay.aa2.launch_speed": "发射速度："
 }

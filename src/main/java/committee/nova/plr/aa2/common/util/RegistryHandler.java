@@ -1,5 +1,6 @@
 package committee.nova.plr.aa2.common.util;
 
+import committee.nova.plr.aa2.client.config.ClientConfig;
 import committee.nova.plr.aa2.common.AA2;
 import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.init.EntityInit;
@@ -29,5 +30,6 @@ public class RegistryHandler {
         Items.register(eventBus);
         Entities.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.CLIENT_CONFIG);
     }
 }

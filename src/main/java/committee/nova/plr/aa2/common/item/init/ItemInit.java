@@ -12,6 +12,7 @@ import static net.minecraft.tags.ItemTags.bind;
 
 public class ItemInit {
     public static final Tag.Named<Item> PORTABLE_LAUNCHERS = bind("portable_launcher");
+    public static final Tag.Named<Item> FLAK_LAUNCHERS = bind("flak_launcher");
 
     public static final String[] list = new String[]{"barrel", "machine", "handle", "butt", "mag_3", "mag_6", "mag_u"};
 

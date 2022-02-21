@@ -5,7 +5,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class CommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec.BooleanValue INACCURACY_SYSTEM = BUILDER.comment(
-                    "Configuration of Art Artillery 2",
+                    "Common Configuration of Art Artillery 2",
                     "[Mechanisms]",
                     "Should we activate inaccuracy system?",
                     " If yes, player should stand still to keep the mod's ranged item accurate.")
@@ -21,10 +21,18 @@ public class CommonConfig {
                     "How long should be the cool down time after using the launcher?",
                     "Default is 20 ticks = 1 sec.")
             .defineInRange("fire_cd", 20, 0, 100);
+    public static final ForgeConfigSpec.IntValue FIRE_CD_FLAK = BUILDER.comment(
+                    "How long should be the cool down time after using the flak launcher?",
+                    "Default is 20 ticks = 1 sec.")
+            .defineInRange("fire_cd_flak", 20, 0, 100);
     public static final ForgeConfigSpec.IntValue RELOAD_CD = BUILDER.comment(
                     "How long should be the cool down time after reloading the launcher?",
-                    "Default is 60 ticks = 3 sec.")
-            .defineInRange("reload_cd", 60, 0, 300);
+                    "Default is 40 ticks = 2 sec.")
+            .defineInRange("reload_cd", 40, 0, 300);
+    public static final ForgeConfigSpec.IntValue RELOAD_CD_FLAK = BUILDER.comment(
+                    "How long should be the cool down time after reloading the launcher?",
+                    "Default is 10 ticks = 0.5 sec.")
+            .defineInRange("reload_cd_flak", 10, 0, 300);
     public static final ForgeConfigSpec.DoubleValue SHELL_SPEED = BUILDER.comment(
                     "[Shell Projectile Properties]",
                     "How quick should the shell be launched?",
@@ -58,5 +66,14 @@ public class CommonConfig {
                     "2 -> DESTROY(Destroy the blocks, nothing left).",
                     "Default is 0.")
             .defineInRange("exp_type_block", 0, 0, 2);
+    public static final ForgeConfigSpec.DoubleValue FLAK_DIRECT_DAMAGE = BUILDER.comment(
+                    "[Flak Cannon Projectile Properties]",
+                    "How big should be the damage of directly hit by a flak cannon?",
+                    "Default is 10.0 (5 hearts).")
+            .defineInRange("flak_direct_damage", 10D, 0D, 200D);
+    public static final ForgeConfigSpec.IntValue FLAK_REMAIN_TIME = BUILDER.comment(
+                    "How long should be the flak cannon's remain time after starting damaging the nearby entities?",
+                    "Default is 160 (8 sec).")
+            .defineInRange("flak_remain_time", 160, 60, 600);
     public static final ForgeConfigSpec COMMON_CONFIG = BUILDER.build();
 }

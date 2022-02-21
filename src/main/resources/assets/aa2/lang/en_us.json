@@ -21,5 +21,6 @@
   "death.attack.shotByShell": "%1$s was crushed by a shell",
   "death.attack.shotByShell.player": "%1$s was crushed by %2$s using portable launcher",
   "death.attack.shotByFlak": "%1$s met a flak cannon",
-  "death.attack.shotByFlak.player": "%1$s met a flak cannon launched by %2$s"
+  "death.attack.shotByFlak.player": "%1$s met a flak cannon launched by %2$s",
+  "overlay.aa2.launch_speed": "Launch Speed: "
 }

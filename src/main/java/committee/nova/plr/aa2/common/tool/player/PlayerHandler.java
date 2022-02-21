@@ -1,5 +1,6 @@
 package committee.nova.plr.aa2.common.tool.player;
 
+import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.item.api.IReloadable;
 import net.minecraft.Util;
 import net.minecraft.core.NonNullList;
@@ -53,10 +54,13 @@ public class PlayerHandler {
     }
 
     public static boolean canShootAccurately(Player player) {
+        if (!CommonConfig.INACCURACY_SYSTEM.get()) {
+            return true;
+        }
         if (!player.isOnGround() && !player.isPassenger()) {
             return false;
         }
-        if (player.isSprinting()) {
+        if (player.isSprinting() && !player.isCrouching()) {
             return false;
         }
         return !player.isSwimming();

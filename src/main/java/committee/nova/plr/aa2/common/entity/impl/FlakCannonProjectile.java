@@ -1,5 +1,6 @@
 package committee.nova.plr.aa2.common.entity.impl;
 
+import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.init.EntityInit;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
 import committee.nova.plr.aa2.common.sound.init.SoundInit;
@@ -27,9 +28,12 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Random;
 
+import static committee.nova.plr.aa2.common.tool.misc.ParticleReference.smoke_ball;
+
 public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier {
     public static final DamageSource SHOT_BY_FLAK = new DamageSource("shotByFlak").setProjectile().bypassMagic();
-    private static final int remainTime = 160;
+    private final int remainTime = CommonConfig.FLAK_REMAIN_TIME.get();
+    private final float directDamage = CommonConfig.FLAK_DIRECT_DAMAGE.get().floatValue();
     private final int fuseTime;
 
     public FlakCannonProjectile(PlayMessages.SpawnEntity packet, Level world, int fuseTime) {
@@ -88,8 +92,7 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
     @Override
     protected void doPostHurtEffects(@Nonnull LivingEntity entity) {
         super.doPostHurtEffects(entity);
-        entity.hurt(SHOT_BY_FLAK, Math.max(0F, 16F - 16F * (tickCount - fuseTime - 80) / remainTime));
-        //todo:particle
+        entity.hurt(SHOT_BY_FLAK, Math.max(0F, directDamage - directDamage * (tickCount - fuseTime - 80) / remainTime));
         this.discard();
     }
 
@@ -123,19 +126,12 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
     }
 
     private void generateParticle(Level level, Vec3i pos) {
-        for (int sx = -5; sx <= 5; sx++) {
-            for (int sy = -5; sy <= 5; sy++) {
-                for (int sz = -5; sz <= 5; sz++) {
-                    final double xO = sx / 1.875D;
-                    final double yO = sy / 1.875D;
-                    final double zO = sz / 1.875D;
-                    if (Math.sqrt(xO * xO + yO * yO + zO * zO) <= (5 / 1.875D))
-                        level.addParticle(ParticleTypes.LARGE_SMOKE,
-                                pos.getX() + xO,
-                                pos.getY() + yO,
-                                pos.getZ() + zO, 0, 0, 0);
-                }
-            }
+        for (final Vec3 v : smoke_ball) {
+            level.addParticle(ParticleTypes.LARGE_SMOKE,
+                    pos.getX() + v.x,
+                    pos.getY() + v.y,
+                    pos.getZ() + v.z,
+                    0, 0, 0);
         }
     }
 

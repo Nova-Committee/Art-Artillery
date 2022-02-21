@@ -26,8 +26,7 @@ import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.CURRENT;
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.MAX;
 
 public class PortableFlakLauncherItem extends Item implements IReloadable, IThirdPersonRenderable {
-    private static final int MAX_DRAW_DURATION = 20;
-    private final int reloadTime = 10;
+    private final int reloadTime = CommonConfig.RELOAD_CD_FLAK.get();
     private final int magazine;
 
     public PortableFlakLauncherItem(int magazine) {
@@ -42,7 +41,7 @@ public class PortableFlakLauncherItem extends Item implements IReloadable, IThir
             cannon.pickup = AbstractArrow.Pickup.DISALLOWED;
             stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
             //todo: own CD
-            player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD.get());
+            player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD_FLAK.get());
         }
     }
 
@@ -72,17 +71,13 @@ public class PortableFlakLauncherItem extends Item implements IReloadable, IThir
     @Override
     public void releaseUsing(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull LivingEntity entity, int time) {
         if (entity instanceof Player player) {
-            final boolean hasCannon = PlayerHandler.consumeMagazine(stack, player);
-            if (!hasCannon) {
-                return;
-            }
             final int i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, level, player, this.getUseDuration(stack) - time, true);
             if (i < 0) return;
 
             final float f = getPowerForTime(i);
             if (!((double) f < 0.1D)) {
                 if (!level.isClientSide) {
-                    launchCannon(stack, player, (int) (20 * f));
+                    if (PlayerHandler.consumeMagazine(stack, player)) launchCannon(stack, player, (int) (20 * f));
                 }
             }
         }
