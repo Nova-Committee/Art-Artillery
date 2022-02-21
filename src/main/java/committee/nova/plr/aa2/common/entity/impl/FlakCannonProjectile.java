@@ -26,7 +26,6 @@ import net.minecraftforge.network.PlayMessages;
 
 import javax.annotation.Nonnull;
 import java.util.List;
-import java.util.Random;
 
 import static committee.nova.plr.aa2.common.tool.misc.ParticleReference.smoke_ball;
 
@@ -58,7 +57,6 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
 
     public static FlakCannonProjectile shoot(Level world, LivingEntity entity, int fuseTime) {
         final FlakCannonProjectile flakCannon = new FlakCannonProjectile(EntityInit.flakCannon.get(), entity, world, fuseTime);
-        final Random random = world.random;
         flakCannon.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 2, 0);
         flakCannon.setNoGravity(true);
         flakCannon.setSilent(true);
