@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import committee.nova.plr.aa2.client.config.ClientConfig;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
 import committee.nova.plr.aa2.common.tool.player.PlayerHandler;
+import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
@@ -51,6 +52,10 @@ public class Overlay {
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void indicatorRender(RenderGameOverlayEvent.Pre event) {
+        final boolean isFirstPerson = Minecraft.getInstance().options.getCameraType() == CameraType.FIRST_PERSON;
+        if (!isFirstPerson) {
+            return;
+        }
         final Player player = Minecraft.getInstance().player;
         if (player == null) {
             return;
@@ -92,7 +97,7 @@ public class Overlay {
         final boolean isAccurate = PlayerHandler.canShootAccurately(player);
         final ResourceLocation tex = new ResourceLocation(MessageFormat.format("aa2:textures/overlay/accuracy_{0}.png", isAccurate ? "1" : "0"));
         RenderSystem.setShaderTexture(0, tex);
-        GuiComponent.blit(matrixStack, w - 7, h - 8, 0, 0, 16, 16, 16, 16);
+        GuiComponent.blit(matrixStack, w - 7 - h % 2, h - 8 + h % 2, 0, 0, 16, 16, 16, 16);
     }
 
     public static void startRender() {
