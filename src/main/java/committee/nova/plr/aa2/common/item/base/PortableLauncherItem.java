@@ -4,11 +4,14 @@ import committee.nova.plr.aa2.client.creativeTab.TabInit;
 import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.impl.ShellProjectile;
 import committee.nova.plr.aa2.common.item.api.IReloadable;
+import committee.nova.plr.aa2.common.item.api.IThirdPersonRenderable;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
 import committee.nova.plr.aa2.common.tool.player.PlayerHandler;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +25,7 @@ import javax.annotation.Nonnull;
 
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.*;
 
-public class PortableLauncherItem extends Item implements IReloadable {
+public class PortableLauncherItem extends Item implements IReloadable, IThirdPersonRenderable {
     private final int reloadTime = CommonConfig.RELOAD_CD.get();
     private final int magazine;
 
@@ -58,6 +61,9 @@ public class PortableLauncherItem extends Item implements IReloadable {
 
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        if (entity.getItemInHand(InteractionHand.MAIN_HAND) != stack) {
+            return true;
+        }
         if (entity instanceof Player player) {
             if (player.getCooldowns().isOnCooldown(stack.getItem())) {
                 return true;
@@ -107,4 +113,10 @@ public class PortableLauncherItem extends Item implements IReloadable {
     public Item getAmmunition() {
         return ItemInit.genericShell.get().asItem();
     }
+
+    @Override
+    public HumanoidModel.ArmPose getIdleArmPose() {
+        return HumanoidModel.ArmPose.BOW_AND_ARROW;
+    }
+
 }

@@ -4,6 +4,7 @@ import committee.nova.plr.aa2.client.creativeTab.TabInit;
 import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.impl.FlakCannonProjectile;
 import committee.nova.plr.aa2.common.item.api.IReloadable;
+import committee.nova.plr.aa2.common.item.api.IThirdPersonRenderable;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
 import committee.nova.plr.aa2.common.tool.player.PlayerHandler;
 import net.minecraft.nbt.CompoundTag;
@@ -24,7 +25,7 @@ import javax.annotation.Nonnull;
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.CURRENT;
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.MAX;
 
-public class PortableFlakLauncherItem extends Item implements IReloadable {
+public class PortableFlakLauncherItem extends Item implements IReloadable, IThirdPersonRenderable {
     private static final int MAX_DRAW_DURATION = 20;
     private final int reloadTime = 10;
     private final int magazine;
@@ -90,6 +91,9 @@ public class PortableFlakLauncherItem extends Item implements IReloadable {
     @Nonnull
     public InteractionResultHolder<ItemStack> use(@Nonnull Level level, @Nonnull Player player, @Nonnull InteractionHand hand) {
         final ItemStack itemstack = player.getItemInHand(hand);
+        if (hand != InteractionHand.MAIN_HAND) {
+            return InteractionResultHolder.pass(itemstack);
+        }
         player.startUsingItem(hand);
         return InteractionResultHolder.consume(itemstack);
     }
