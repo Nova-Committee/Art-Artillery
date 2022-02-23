@@ -1,0 +1,14 @@
+{
+  "parent": "aa2:item/laser/laser_tracker",
+  "textures": {
+    "1": "aa2:special/empty"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "on": 1
+      },
+      "model": "aa2:item/laser/ltr_on"
+    }
+  ]
+}

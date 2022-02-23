@@ -1,0 +1,6 @@
+{
+  "parent": "aa2:item/laser/laser_tracker",
+  "textures": {
+    "1": "aa2:items/laser/ray_on"
+  }
+}

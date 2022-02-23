@@ -18,7 +18,6 @@ import net.minecraftforge.network.NetworkEvent;
 import java.text.MessageFormat;
 import java.util.function.Supplier;
 
-import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.notifyClientPlayer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ReloadKeyMessage {
@@ -54,11 +53,14 @@ public class ReloadKeyMessage {
 
             final int status = launcher.reloadable(stack, player);
             switch (status) {
-                case 2 -> notifyClientPlayer(player, new TranslatableComponent("msg.aa2.cooling"));
-                case 1 -> notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
+                case 2 -> player.displayClientMessage(new TranslatableComponent("msg.aa2.cooling"), true);
+                //notifyClientPlayer(player, new TranslatableComponent("msg.aa2.cooling"));
+                case 1 -> player.displayClientMessage(new TranslatableComponent("msg.aa2.full_mag"), true);
+                //notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
                 case 0 -> {
                     if (!PlayerHandler.loadShell(stack, player)) {
-                        notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_ammunition"));
+                        player.displayClientMessage(new TranslatableComponent("msg.aa2.insufficient_ammunition"), true);
+                        //notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_ammunition"));
                         return;
                     }
                     player.getCooldowns().addCooldown(stack.getItem(), 20);

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IA ",
+    "H  "
+  ],
+  "key": {
+    "H": {
+      "item": "aa2:handle"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "aa2:ltr",
+    "count": 1
+  }
+}

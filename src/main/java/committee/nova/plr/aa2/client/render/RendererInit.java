@@ -23,6 +23,7 @@ public class RendererInit {
     @SubscribeEvent
     public static void overrideRegistry(FMLClientSetupEvent event) {
         overrideFlakLauncher(event, ItemInit.portableFlakLauncher.get());
+        overrideLaserTracker(event, ItemInit.laserTracker.get());
     }
 
     public static void overrideFlakLauncher(FMLClientSetupEvent event, Item launcher) {
@@ -31,6 +32,16 @@ public class RendererInit {
                 return 0.0F;
             } else {
                 return entity.getUseItem() != stack ? 0.0F : Math.min(2F, (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 50.0F);
+            }
+        }));
+    }
+
+    public static void overrideLaserTracker(FMLClientSetupEvent event, Item laser) {
+        event.enqueueWork(() -> ItemProperties.register(laser, new ResourceLocation("on"), (stack, world, entity, i) -> {
+            if (entity == null) {
+                return 0;
+            } else {
+                return entity.getUseItem() != stack ? 1 : 0;
             }
         }));
     }
