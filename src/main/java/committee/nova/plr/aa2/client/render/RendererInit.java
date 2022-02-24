@@ -41,10 +41,8 @@ public class RendererInit {
         event.enqueueWork(() -> ItemProperties.register(laser, new ResourceLocation("on"), (stack, world, entity, i) -> {
             if (entity == null) {
                 return 0;
-            } else if (stack != entity.getItemInHand(InteractionHand.MAIN_HAND)) {
-                return 0;
             } else {
-                return stack == entity.getUseItem() ? 1 : 0;
+                return stack == entity.getItemInHand(InteractionHand.MAIN_HAND) ? 1 : 0;
             }
         }));
     }
