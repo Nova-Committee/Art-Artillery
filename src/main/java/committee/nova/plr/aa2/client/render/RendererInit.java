@@ -5,6 +5,7 @@ import committee.nova.plr.aa2.common.item.init.ItemInit;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -40,8 +41,10 @@ public class RendererInit {
         event.enqueueWork(() -> ItemProperties.register(laser, new ResourceLocation("on"), (stack, world, entity, i) -> {
             if (entity == null) {
                 return 0;
+            } else if (stack != entity.getItemInHand(InteractionHand.MAIN_HAND)) {
+                return 0;
             } else {
-                return entity.getUseItem() != stack ? 1 : 0;
+                return stack == entity.getUseItem() ? 1 : 0;
             }
         }));
     }

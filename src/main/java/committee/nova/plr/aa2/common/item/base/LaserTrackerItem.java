@@ -23,6 +23,9 @@ public class LaserTrackerItem extends Item implements IThirdPersonRenderable {
     public void inventoryTick(@Nonnull ItemStack stack, @Nonnull Level worldIn, @Nonnull Entity entityIn, int itemSlot, boolean isSelected) {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
         if (entityIn instanceof Player player) {
+            if (stack != player.getMainHandItem()) {
+                return;
+            }
             final Vec3 trace = RayTraceUtils.getRaytracedBlock(entityIn);
             if (!worldIn.isClientSide) {
                 if (isSelected && trace != null) {

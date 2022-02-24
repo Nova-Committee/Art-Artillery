@@ -54,13 +54,10 @@ public class ReloadKeyMessage {
             final int status = launcher.reloadable(stack, player);
             switch (status) {
                 case 2 -> player.displayClientMessage(new TranslatableComponent("msg.aa2.cooling"), true);
-                //notifyClientPlayer(player, new TranslatableComponent("msg.aa2.cooling"));
                 case 1 -> player.displayClientMessage(new TranslatableComponent("msg.aa2.full_mag"), true);
-                //notifyClientPlayer(player, new TranslatableComponent("msg.aa2.full_mag"));
                 case 0 -> {
                     if (!PlayerHandler.loadShell(stack, player)) {
                         player.displayClientMessage(new TranslatableComponent("msg.aa2.insufficient_ammunition"), true);
-                        //notifyClientPlayer(player, new TranslatableComponent("msg.aa2.insufficient_ammunition"));
                         return;
                     }
                     player.getCooldowns().addCooldown(stack.getItem(), 20);
