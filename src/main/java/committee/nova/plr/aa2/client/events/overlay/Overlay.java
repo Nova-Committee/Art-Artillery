@@ -1,4 +1,4 @@
-package committee.nova.plr.aa2.client.overlay;
+package committee.nova.plr.aa2.client.events.overlay;
 
 
 import com.mojang.blaze3d.platform.GlStateManager;

@@ -1,4 +1,4 @@
-package committee.nova.plr.aa2.client.render;
+package committee.nova.plr.aa2.client.events.render;
 
 import committee.nova.plr.aa2.common.entity.init.EntityInit;
 import committee.nova.plr.aa2.common.item.init.ItemInit;

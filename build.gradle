@@ -84,7 +84,7 @@ repositories {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.63'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.79'
 
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.2.3.84")
 

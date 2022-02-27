@@ -6,6 +6,7 @@ import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.init.EntityInit;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
 import committee.nova.plr.aa2.common.sound.init.SoundInit;
+import committee.nova.plr.aa2.common.tool.misc.ParticleReference;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -23,6 +24,7 @@ public class RegistryHandler {
 
     public static void register() {
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ParticleReference.init();
         SoundInit.register();
         ItemInit.register();
         EntityInit.register();
