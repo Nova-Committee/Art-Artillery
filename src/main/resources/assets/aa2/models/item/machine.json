@@ -1,0 +1,275 @@
+{
+  "credit": "Tapio made with Blockbench",
+  "textures": {
+    "0": "aa2:items/machine"
+  },
+  "elements": [
+    {
+      "name": "body",
+      "from": [
+        5.5,
+        2,
+        4
+      ],
+      "to": [
+        10.5,
+        7,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          0,
+          16
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            5,
+            0,
+            10
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            9,
+            0,
+            5,
+            5
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            5,
+            0,
+            0,
+            5
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            9,
+            5,
+            5,
+            10
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            14,
+            0,
+            9,
+            4
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            14,
+            8,
+            9,
+            4
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "fire",
+      "from": [
+        7.5,
+        0,
+        6
+      ],
+      "to": [
+        8.5,
+        2,
+        7
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          0,
+          16
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            10,
+            1,
+            12
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            1,
+            10,
+            0,
+            12
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            10,
+            8,
+            9,
+            10
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            3,
+            10,
+            2,
+            12
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            4,
+            10,
+            3,
+            11
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            5,
+            11,
+            4,
+            10
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -0.75,
+        0.25
+      ],
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -0.75,
+        0.25
+      ],
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -180,
+        -180,
+        0
+      ],
+      "translation": [
+        0,
+        -2.75,
+        1.25
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        -180,
+        -180,
+        0
+      ],
+      "translation": [
+        0,
+        -2.75,
+        1.25
+      ]
+    },
+    "ground": {
+      "rotation": [
+        -90,
+        0,
+        0
+      ],
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    },
+    "gui": {
+      "rotation": [
+        18,
+        36,
+        0
+      ],
+      "translation": [
+        1,
+        2.5,
+        0
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        -180,
+        0
+      ],
+      "translation": [
+        0,
+        3.75,
+        -4
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "machine",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        0,
+        1
+      ]
+    }
+  ]
+}

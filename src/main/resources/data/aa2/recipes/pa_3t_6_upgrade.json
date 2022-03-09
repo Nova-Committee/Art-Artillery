@@ -1,0 +1,16 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "aa2:pl_1"
+    },
+    {
+      "item": "aa2:mag_u"
+    }
+  ],
+  "result": {
+    "item": "aa2:pl_2",
+    "count": 1
+  }
+}

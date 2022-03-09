@@ -1,0 +1,26 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    " 4 "
+  ],
+  "key": {
+    "0": {
+      "item": "aa2:barrel"
+    },
+    "1": {
+      "item": "aa2:machine"
+    },
+    "2": {
+      "item": "aa2:butt"
+    },
+    "4": {
+      "item": "aa2:handle"
+    }
+  },
+  "result": {
+    "item": "aa2:pl_0",
+    "count": 1
+  }
+}

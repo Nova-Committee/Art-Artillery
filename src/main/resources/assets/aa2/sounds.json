@@ -1,0 +1,42 @@
+{
+  "flak_launch": {
+    "sounds": [
+      {
+        "name": "aa2:f_l1",
+        "stream": true
+      },
+      {
+        "name": "aa2:f_l2",
+        "stream": true
+      },
+      {
+        "name": "aa2:f_l3",
+        "stream": true
+      },
+      {
+        "name": "aa2:f_l4",
+        "stream": true
+      }
+    ]
+  },
+  "flak_explode": {
+    "sounds": [
+      {
+        "name": "aa2:f_e1",
+        "stream": true
+      },
+      {
+        "name": "aa2:f_e2",
+        "stream": true
+      },
+      {
+        "name": "aa2:f_e3",
+        "stream": true
+      },
+      {
+        "name": "aa2:f_e4",
+        "stream": true
+      }
+    ]
+  }
+}

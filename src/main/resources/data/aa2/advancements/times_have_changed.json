@@ -1,0 +1,26 @@
+{
+  "display": {
+    "background": "minecraft:textures/block/netherrack.png",
+    "icon": {
+      "item": "aa2:generic_shell"
+    },
+    "title": {
+      "translate": "advancements.aa2.times_have_changed.title"
+    },
+    "description": {
+      "translate": "advancements.aa2.times_have_changed.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "times_have_changed": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

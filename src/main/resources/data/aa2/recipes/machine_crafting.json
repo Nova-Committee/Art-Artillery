@@ -1,0 +1,42 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:smooth_stone"
+    },
+    "1": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "2": {
+      "item": "minecraft:smooth_stone"
+    },
+    "3": {
+      "item": "minecraft:smooth_stone"
+    },
+    "4": {
+      "item": "minecraft:piston"
+    },
+    "5": {
+      "item": "minecraft:smooth_stone"
+    },
+    "6": {
+      "item": "minecraft:smooth_stone"
+    },
+    "7": {
+      "item": "minecraft:stone_button"
+    },
+    "8": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "aa2:machine",
+    "count": 1
+  }
+}

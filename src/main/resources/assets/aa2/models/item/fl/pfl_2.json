@@ -1,0 +1,6 @@
+{
+  "parent": "aa2:item/flak_launcher",
+  "textures": {
+    "1": "aa2:items/pfl/flak_pull_2"
+  }
+}

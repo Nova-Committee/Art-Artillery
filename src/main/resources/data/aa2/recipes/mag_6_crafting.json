@@ -1,0 +1,42 @@
+{
+  "group": "aa2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:gold_ingot"
+    },
+    "1": {
+      "item": "minecraft:lever"
+    },
+    "2": {
+      "item": "minecraft:gold_ingot"
+    },
+    "3": {
+      "tag": "minecraft:wool"
+    },
+    "4": {
+      "item": "minecraft:gold_ingot"
+    },
+    "5": {
+      "tag": "minecraft:wool"
+    },
+    "6": {
+      "item": "minecraft:smooth_stone"
+    },
+    "7": {
+      "item": "aa2:mag_3"
+    },
+    "8": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "aa2:mag_6",
+    "count": 1
+  }
+}
