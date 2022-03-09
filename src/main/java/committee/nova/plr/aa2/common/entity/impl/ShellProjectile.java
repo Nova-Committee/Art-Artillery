@@ -24,34 +24,41 @@ import java.util.Random;
 
 public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     //todo:config
+    public final boolean isHeavy;
     public static final float power = CommonConfig.SHELL_SPEED.get().floatValue();
     public static final DamageSource SHOT_BY_SHELL = new DamageSource("shotByShell").setProjectile().bypassMagic();
 
     public ShellProjectile(PlayMessages.SpawnEntity packet, Level world) {
         super(EntityInit.shell.get(), world);
+        this.isHeavy = false;
     }
 
     public ShellProjectile(EntityType<? extends ShellProjectile> type, Level world) {
         super(type, world);
+        this.isHeavy = false;
     }
 
     public ShellProjectile(EntityType<? extends ShellProjectile> type, double x, double y, double z, Level world) {
         super(type, x, y, z, world);
+        this.isHeavy = false;
     }
 
-    public ShellProjectile(EntityType<? extends ShellProjectile> type, LivingEntity entity, Level world) {
+    public ShellProjectile(EntityType<? extends ShellProjectile> type, LivingEntity entity, Level world, boolean isHeavy) {
         super(type, entity, world);
+        this.isHeavy = isHeavy;
     }
 
     //todo:more to do with accuracy
-    public static ShellProjectile shoot(Level world, LivingEntity entity, boolean isAccurate) {
-        final ShellProjectile shell = new ShellProjectile(EntityInit.shell.get(), entity, world);
+    public static ShellProjectile shoot(Level world, LivingEntity entity, boolean isAccurate, boolean isHeavy, boolean caseEnhanced) {
+        final ShellProjectile shell = new ShellProjectile(EntityInit.shell.get(), entity, world, isHeavy);
         final Random random = world.random;
         final float inaccuracy = CommonConfig.INACCURACY_AMPLIFIER.get().floatValue();
-        final float xO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy;
-        final float yO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy;
-        final float zO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy;
-        shell.shoot(entity.getLookAngle().x + xO, entity.getLookAngle().y + yO, entity.getLookAngle().z + zO, power * 2, 0);
+        final float weightToAccuracy = isHeavy ? 0.5F : 1F;
+        final float powerInfluenced = (isHeavy ? 0.8F : 1F) * (caseEnhanced ? 1.2F : 1F);
+        final float xO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy * weightToAccuracy;
+        final float yO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy * weightToAccuracy;
+        final float zO = isAccurate ? 0 : (random.nextFloat() - 0.5F) * inaccuracy * weightToAccuracy;
+        shell.shoot(entity.getLookAngle().x + xO, entity.getLookAngle().y + yO, entity.getLookAngle().z + zO, power * 2 * powerInfluenced, 0);
         shell.setSilent(true);
         shell.setCritArrow(false);
         world.addFreshEntity(shell);
@@ -83,7 +90,7 @@ public class ShellProjectile extends AbstractArrow implements ItemSupplier {
     @Override
     protected void doPostHurtEffects(@Nonnull LivingEntity entity) {
         super.doPostHurtEffects(entity);
-        entity.hurt(SHOT_BY_SHELL, CommonConfig.SHELL_DIRECT_DAMAGE.get().floatValue());
+        entity.hurt(SHOT_BY_SHELL, CommonConfig.SHELL_DIRECT_DAMAGE.get().floatValue() * (isHeavy ? 1.2F : 1F));
         this.level.explode(this, getX(), getY(), getZ(), CommonConfig.SHELL_HIT_ENTITY_EXPLOSION_POWER.get().floatValue(), getExplosionTypeFromInt(CommonConfig.SHELL_HIT_ENTITY_EXPLOSION_TYPE.get()));
         this.discard();
     }

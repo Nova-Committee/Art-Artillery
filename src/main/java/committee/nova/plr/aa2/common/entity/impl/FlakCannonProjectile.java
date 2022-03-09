@@ -98,7 +98,7 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
     public void tick() {
         super.tick();
         final boolean timeOut = tickCount > fuseTime + remainTime + 75;
-        if (this.inGround || this.isUnderWater() || timeOut) {
+        if (this.inGround || this.isUnderWater() || this.onGround || timeOut) {
             if (!timeOut)
                 level.explode(this, this.getX(), this.getY(), this.getZ(), 1F, Explosion.BlockInteraction.NONE);
             this.discard();

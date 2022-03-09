@@ -5,7 +5,9 @@ import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.impl.ShellProjectile;
 import committee.nova.plr.aa2.common.item.api.IReloadable;
 import committee.nova.plr.aa2.common.item.api.IThirdPersonRenderable;
+import committee.nova.plr.aa2.common.item.enchantment.init.EnchantmentInit;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
+import committee.nova.plr.aa2.common.tool.misc.EnchantmentTool;
 import committee.nova.plr.aa2.common.tool.player.PlayerHandler;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.BlockPos;
@@ -24,6 +26,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nonnull;
 
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.*;
+import static net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel;
 
 public class PortableLauncherItem extends Item implements IReloadable, IThirdPersonRenderable {
     private final int reloadTime = CommonConfig.RELOAD_CD.get();
@@ -37,11 +40,24 @@ public class PortableLauncherItem extends Item implements IReloadable, IThirdPer
     public static void launchShell(ItemStack stack, Player player) {
         final Level level = player.level;
         if (!level.isClientSide) {
-            final ShellProjectile shell = ShellProjectile.shoot(level, player, PlayerHandler.canShootAccurately(player));
+            final boolean isHeavy = getItemEnchantmentLevel(EnchantmentInit.superHeavyShell.get(), stack) >= 1;
+            final boolean caseEnhanced = getItemEnchantmentLevel(EnchantmentInit.enhancedCase.get(), stack) >= 1;
+            final ShellProjectile shell = ShellProjectile.shoot(level, player, PlayerHandler.canShootAccurately(player, stack), isHeavy, caseEnhanced);
             stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
             shell.pickup = AbstractArrow.Pickup.DISALLOWED;
-            player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD.get());
+            player.getCooldowns().addCooldown(stack.getItem(),
+                    EnchantmentTool.getTimeToConsume(CommonConfig.FIRE_CD.get(), getItemEnchantmentLevel(EnchantmentInit.quickCooling.get(), stack)));
         }
+    }
+
+    @Override
+    public int getItemEnchantability(ItemStack stack) {
+        return 30;
+    }
+
+    @Override
+    public boolean isFoil(@Nonnull ItemStack stack) {
+        return false;
     }
 
     public static void initializeNbt(CompoundTag tag, int magazine) {
@@ -100,12 +116,13 @@ public class PortableLauncherItem extends Item implements IReloadable, IThirdPer
         initializeNbt(stack.getOrCreateTag(), magazine);
     }
 
-    public void load(CompoundTag tag, Player player, Item launcher) {
+    public void load(CompoundTag tag, Player player, ItemStack launcher) {
         tag.putInt(CURRENT, tag.getInt(CURRENT) + 1);
         if (player.level.isClientSide) {
             player.playSound(SoundEvents.WOODEN_BUTTON_CLICK_OFF, 1f, 1f);
         }
-        player.getCooldowns().addCooldown(launcher, reloadTime);
+        player.getCooldowns().addCooldown(launcher.getItem(),
+                EnchantmentTool.getTimeToConsume(reloadTime, getItemEnchantmentLevel(EnchantmentInit.quickReload.get(), launcher)));
     }
 
     @Override

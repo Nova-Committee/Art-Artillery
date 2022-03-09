@@ -5,7 +5,9 @@ import committee.nova.plr.aa2.common.config.CommonConfig;
 import committee.nova.plr.aa2.common.entity.impl.FlakCannonProjectile;
 import committee.nova.plr.aa2.common.item.api.IReloadable;
 import committee.nova.plr.aa2.common.item.api.IThirdPersonRenderable;
+import committee.nova.plr.aa2.common.item.enchantment.init.EnchantmentInit;
 import committee.nova.plr.aa2.common.item.init.ItemInit;
+import committee.nova.plr.aa2.common.tool.misc.EnchantmentTool;
 import committee.nova.plr.aa2.common.tool.player.PlayerHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
@@ -24,6 +26,7 @@ import javax.annotation.Nonnull;
 
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.CURRENT;
 import static committee.nova.plr.aa2.common.tool.player.PlayerHandler.MAX;
+import static net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel;
 
 public class PortableFlakLauncherItem extends Item implements IReloadable, IThirdPersonRenderable {
     private final int reloadTime = CommonConfig.RELOAD_CD_FLAK.get();
@@ -40,9 +43,19 @@ public class PortableFlakLauncherItem extends Item implements IReloadable, IThir
             final FlakCannonProjectile cannon = FlakCannonProjectile.shoot(level, player, fuseTime);
             cannon.pickup = AbstractArrow.Pickup.DISALLOWED;
             stack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(player.getUsedItemHand()));
-            //todo: own CD
-            player.getCooldowns().addCooldown(stack.getItem(), CommonConfig.FIRE_CD_FLAK.get());
+            player.getCooldowns().addCooldown(stack.getItem(),
+                    EnchantmentTool.getTimeToConsume(CommonConfig.FIRE_CD_FLAK.get(), getItemEnchantmentLevel(EnchantmentInit.quickCooling.get(), stack)));
         }
+    }
+
+    @Override
+    public int getItemEnchantability(ItemStack stack) {
+        return 30;
+    }
+
+    @Override
+    public boolean isFoil(@Nonnull ItemStack stack) {
+        return false;
     }
 
     public static void initializeNbt(CompoundTag tag, int magazine) {
@@ -107,12 +120,13 @@ public class PortableFlakLauncherItem extends Item implements IReloadable, IThir
     }
 
     @Override
-    public void load(CompoundTag tag, Player player, Item launcher) {
+    public void load(CompoundTag tag, Player player, ItemStack launcher) {
         tag.putInt(CURRENT, tag.getInt(CURRENT) + 1);
         if (player.level.isClientSide) {
             player.playSound(SoundEvents.WOODEN_BUTTON_CLICK_OFF, 1f, 1f);
         }
-        player.getCooldowns().addCooldown(launcher, reloadTime);
+        player.getCooldowns().addCooldown(launcher.getItem(),
+                EnchantmentTool.getTimeToConsume(reloadTime, getItemEnchantmentLevel(EnchantmentInit.quickReload.get(), launcher)));
     }
 
     @Override

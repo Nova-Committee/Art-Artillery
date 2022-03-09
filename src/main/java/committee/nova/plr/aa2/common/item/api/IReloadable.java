@@ -6,7 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public interface IReloadable {
-    void load(CompoundTag tag, Player player, Item launcher);
+    void load(CompoundTag tag, Player player, ItemStack launcher);
 
     int reloadable(ItemStack stack, Player player);
 

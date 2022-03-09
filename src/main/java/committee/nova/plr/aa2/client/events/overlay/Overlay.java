@@ -94,7 +94,7 @@ public class Overlay {
             return;
         }
         if (!ClientConfig.DISPLAY_ACCURACY_INDICATOR.get()) return;
-        final boolean isAccurate = PlayerHandler.canShootAccurately(player);
+        final boolean isAccurate = PlayerHandler.canShootAccurately(player, player.getItemInHand(InteractionHand.MAIN_HAND));
         final ResourceLocation tex = new ResourceLocation(MessageFormat.format("aa2:textures/overlay/accuracy_{0}.png", isAccurate ? "1" : "0"));
         RenderSystem.setShaderTexture(0, tex);
         GuiComponent.blit(matrixStack, w - 7 - h % 2, h - 8 + h % 2, 0, 0, 16, 16, 16, 16);

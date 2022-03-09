@@ -1,6 +1,7 @@
 package committee.nova.plr.aa2.client.creativeTab;
 
 import committee.nova.plr.aa2.common.item.init.ItemInit;
+import committee.nova.plr.aa2.common.tool.misc.EnchantmentTool;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
@@ -13,5 +14,5 @@ public class TabInit {
         public ItemStack makeIcon() {
             return ItemInit.portableLauncherVI.get().getDefaultInstance();
         }
-    };
+    }.setEnchantmentCategories(EnchantmentTool.PORTABLE_LAUNCHER);
 }

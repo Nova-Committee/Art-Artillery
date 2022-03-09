@@ -5,7 +5,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class ClientConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec.BooleanValue DISPLAY_SHELL_INDICATOR = BUILDER.comment(
-                    "Common Configuration of Art Artillery 2",
+                    "Client Configuration of Art Artillery 2",
                     "[Overlay Settings]",
                     "Should we display an indicator for the ammunition status?",
                     "Default is true.")

@@ -60,8 +60,7 @@ public class ReloadKeyMessage {
                         player.displayClientMessage(new TranslatableComponent("msg.aa2.insufficient_ammunition"), true);
                         return;
                     }
-                    player.getCooldowns().addCooldown(stack.getItem(), 20);
-                    launcher.load(stack.getOrCreateTag(), player, stack.getItem());
+                    launcher.load(stack.getOrCreateTag(), player, stack);
                 }
                 default -> AA2.LOGGER.error(MessageFormat.format("Unexpected status {0}, should be 0~2!", status));
             }
