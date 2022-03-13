@@ -38,5 +38,21 @@
         "stream": true
       }
     ]
+  },
+  "hydro_search_act": {
+    "sounds": [
+      {
+        "name": "aa2:hs_a",
+        "stream": true
+      }
+    ]
+  },
+  "hydro_search_loop": {
+    "sounds": [
+      {
+        "name": "aa2:hs_l",
+        "stream": true
+      }
+    ]
   }
 }

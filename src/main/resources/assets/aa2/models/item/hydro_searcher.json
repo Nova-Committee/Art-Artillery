@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aa2:items/hs/hydro_searcher"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "activated": 1
+      },
+      "model": "aa2:item/hs/hydro_searcher_on"
+    }
+  ]
+}

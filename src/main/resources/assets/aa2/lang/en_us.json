@@ -29,6 +29,9 @@
   "item.aa2.mag_6": "Magazine(Hex)",
   "item.aa2.mag_u": "Magazine Upgrade",
   "itemGroup.aa2": "Art? Artillery!2",
+  "item.aa2.bombing_armor_leggings": "Bombing Armor Leggings",
+  "item.aa2.bomb": "Bomb",
+  "item.aa2.hydro_searcher": "Hydroacoustic Searcher",
   "_hotkeys": "",
   "key.aa2.reload": "Reload",
   "key.categories.aa2": "Art? Artillery!2",
@@ -37,11 +40,14 @@
   "msg.aa2.full_mag": "The launcher doesn't need any extra shells!",
   "msg.aa2.laser_tracker": "Coord: %s",
   "msg.aa2.insufficient_ammunition": "Insufficient shell!",
+  "_team_messages": "",
+  "msg.aa2.team.hydro_searching": "{0}: Using Hydroacoustic Search!",
   "_death_messages": "",
   "death.attack.shotByShell": "%1$s was crushed by a shell",
   "death.attack.shotByShell.player": "%1$s was crushed by %2$s using portable launcher",
   "death.attack.shotByFlak": "%1$s met a flak cannon",
   "death.attack.shotByFlak.player": "%1$s met a flak cannon launched by %2$s",
   "_overlay_texts": "",
-  "overlay.aa2.launch_speed": "Launch Speed: "
+  "overlay.aa2.launch_speed": "Launch Speed: ",
+  "overlay.aa2.ready": "Ready"
 }

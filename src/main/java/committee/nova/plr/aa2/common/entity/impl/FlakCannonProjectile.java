@@ -27,6 +27,8 @@ import net.minecraftforge.network.PlayMessages;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+import static committee.nova.plr.aa2.common.sound.init.SoundInit.EXPLODE;
+import static committee.nova.plr.aa2.common.sound.init.SoundInit.LAUNCH;
 import static committee.nova.plr.aa2.common.tool.misc.ParticleReference.smoke_ball;
 
 public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier {
@@ -63,7 +65,7 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
         flakCannon.setCritArrow(false);
         world.addFreshEntity(flakCannon);
         world.playSound(null, entity.getX(), entity.getY(), entity.getZ(),
-                SoundInit.FLAK_LAUNCH, SoundSource.PLAYERS, 1,
+                SoundInit.SOUNDS.get(LAUNCH), SoundSource.PLAYERS, 1,
                 1f);
         return flakCannon;
     }
@@ -105,7 +107,7 @@ public class FlakCannonProjectile extends AbstractArrow implements ItemSupplier 
         } else if (tickCount > fuseTime) {
             final Vec3i pos = new Vec3i(this.getX(), this.getY(), this.getZ());
             if (tickCount == fuseTime + 70) {
-                this.level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundInit.FLAK_EXPLODE, SoundSource.PLAYERS, 1F, 1F);
+                this.level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundInit.SOUNDS.get(EXPLODE), SoundSource.PLAYERS, 1F, 1F);
             }
             this.setDeltaMovement(0, 0, 0);
             generateParticle(level, pos);
