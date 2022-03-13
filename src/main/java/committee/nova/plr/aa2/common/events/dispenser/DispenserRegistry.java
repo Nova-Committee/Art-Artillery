@@ -20,6 +20,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import javax.annotation.Nonnull;
 
+import static committee.nova.plr.aa2.common.sound.init.SoundInit.LAUNCH;
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DispenserRegistry {
     @SubscribeEvent
@@ -61,7 +63,7 @@ public class DispenserRegistry {
                 cannon.setCritArrow(false);
                 level.addFreshEntity(cannon);
                 level.playSound(null, x, y, z,
-                        SoundInit.FLAK_LAUNCH, SoundSource.BLOCKS, 1,
+                        SoundInit.SOUNDS.get(LAUNCH), SoundSource.BLOCKS, 1,
                         1f);
                 return decrement(stack);
             }
