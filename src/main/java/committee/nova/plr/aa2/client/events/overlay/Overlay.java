@@ -86,7 +86,6 @@ public class Overlay {
         }
         final CompoundTag tag = stackInHand.getOrCreateTag();
         if (!tag.contains(ACTIVATED)) return;
-        if (!tag.contains(ACTIVATED)) return;
         if (!tag.contains(TIME_LEFT)) return;
         startRender();
         blitHydroSearchIndication(event.getMatrixStack(), player, stackInHand, tag, event.getWindow().getGuiScaledHeight());

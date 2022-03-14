@@ -25,8 +25,6 @@ import static committee.nova.plr.aa2.common.sound.init.SoundInit.HS_A;
 import static committee.nova.plr.aa2.common.sound.init.SoundInit.HS_L;
 
 public class HydroSearcherItem extends Item {
-    public static final MobEffectInstance SEARCHED = new MobEffectInstance(MobEffects.GLOWING, 120, 1);
-    public static final String T_START_TIME = "st";
     public static final String TIME_LEFT = "tl";
     public static final String ACTIVATED = "at";
 
@@ -44,11 +42,10 @@ public class HydroSearcherItem extends Item {
             }
             final int t = tag.getInt(TIME_LEFT);
             if (t >= 1) {
-                final long loop = level.getDayTime() - tag.getLong(T_START_TIME);
+                final long loop = 1800 - t;
                 if (loop != 0 && loop % 120 == 0) search(player, stack, false);
                 tag.putInt(TIME_LEFT, t - 1);
             } else {
-                tag.putLong(T_START_TIME, 0);
                 tag.putBoolean(ACTIVATED, false);
                 coolDown(player, stack);
             }
@@ -75,7 +72,6 @@ public class HydroSearcherItem extends Item {
 
     private void initializeNbt(ItemStack stack) {
         final CompoundTag tag = stack.getOrCreateTag();
-        if (!tag.contains(T_START_TIME)) tag.putLong(T_START_TIME, 0);
         if (!tag.contains(TIME_LEFT)) tag.putInt(TIME_LEFT, 0);
         if (!tag.contains(ACTIVATED)) tag.putBoolean(ACTIVATED, false);
     }
@@ -102,12 +98,10 @@ public class HydroSearcherItem extends Item {
     private void close(CompoundTag tag) {
         tag.putBoolean(ACTIVATED, false);
         tag.putInt(TIME_LEFT, 0);
-        tag.putLong(T_START_TIME, 0);
     }
 
     private void open(ItemStack stack, CompoundTag tag, Player player) {
         tag.putBoolean(ACTIVATED, true);
-        tag.putLong(T_START_TIME, player.level.getDayTime());
         tag.putInt(TIME_LEFT, 1800);
         stack.setTag(tag);
         search(player, stack, true);
